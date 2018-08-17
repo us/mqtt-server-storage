@@ -10,7 +10,7 @@
 import paho.mqtt.client as mqtt
 import random, threading, json
 from datetime import datetime
-import os
+import commands
 
 #====================================================
 # MQTT Settings 
@@ -26,7 +26,7 @@ def bok():
 	data = float("{0:.2f}".format(random.uniform(50, 100)))
 	publish_Fake_Sensor_Values_to_MQTT("Humidity", data, 'Humidity')
 
-	data = os.system("vcgencmd measure_temp")
+	err, data = commands.getstatusoutput('vcgencmd measure_temp')
 	publish_Fake_Sensor_Values_to_MQTT("Temperature", data, 'Temperature')
 
 #====================================================
