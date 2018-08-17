@@ -25,7 +25,7 @@ def bok():
 	data = float("{0:.2f}".format(random.uniform(50, 100)))
 	publish_Fake_Sensor_Values_to_MQTT("Humidity", data, 'Humidity')
 
-	data = float("{0:.2f}".format(random.uniform(50, 100)))
+	data = os.system("vcgencmd measure_temp")
 	publish_Fake_Sensor_Values_to_MQTT("Temperature", data, 'Temperature')
 
 #====================================================
