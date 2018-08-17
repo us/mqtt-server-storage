@@ -19,6 +19,15 @@ Keep_Alive_Interval = 45
 MQTT_Topic_Humidity = "Home/BedRoom/DHT22/Humidity"
 MQTT_Topic_Temperature = "Home/BedRoom/DHT22/Temperature"
 
+def bok():
+	threading.Timer(3.0, bok).start()
+
+	data = float("{0:.2f}".format(random.uniform(50, 100)))
+	publish_Fake_Sensor_Values_to_MQTT("Humidity", data, 'Humidity')
+
+	data = float("{0:.2f}".format(random.uniform(50, 100)))
+	publish_Fake_Sensor_Values_to_MQTT("Temperature", data, 'Temperature')
+
 #====================================================
 
 def on_connect(client, userdata, rc):
@@ -53,38 +62,36 @@ def publish_To_Topic(topic, message):
 # Dummy code used as Fake Sensor to publish some random values
 # to MQTT Broker
 
-toggle = 0
 
-def publish_Fake_Sensor_Values_to_MQTT():
-	threading.Timer(3.0, publish_Fake_Sensor_Values_to_MQTT).start()
-	global toggle
-	if toggle == 0:
-		Humidity_Fake_Value = float("{0:.2f}".format(random.uniform(50, 100)))
+def convert_to_json(sensor_id, data, name):
+	Data = {}
+	Data['Sensor_ID'] = sensor_id
+	Data['Date'] = (datetime.today()).strftime("%d-%b-%Y %H:%M:%S:%f")
+	Data[name] = data
+	return json.dumps(Data)
 
-		Humidity_Data = {}
-		Humidity_Data['Sensor_ID'] = "Dummy-1"
-		Humidity_Data['Date'] = (datetime.today()).strftime("%d-%b-%Y %H:%M:%S:%f")
-		Humidity_Data['Humidity'] = Humidity_Fake_Value
-		humidity_json_data = json.dumps(Humidity_Data)
+def publish_Fake_Sensor_Values_to_MQTT(sensor_id, data, name):
 
-		print "Publishing fake Humidity Value: " + str(Humidity_Fake_Value) + "..."
-		publish_To_Topic (MQTT_Topic_Humidity, humidity_json_data)
-		toggle = 1
-
-	else:
-		Temperature_Fake_Value = float("{0:.2f}".format(random.uniform(1, 30)))
-
-		Temperature_Data = {}
-		Temperature_Data['Sensor_ID'] = "Dummy-2"
-		Temperature_Data['Date'] = (datetime.today()).strftime("%d-%b-%Y %H:%M:%S:%f")
-		Temperature_Data['Temperature'] = Temperature_Fake_Value
-		temperature_json_data = json.dumps(Temperature_Data)
-
-		print "Publishing fake Temperature Value: " + str(Temperature_Fake_Value) + "..."
-		publish_To_Topic (MQTT_Topic_Temperature, temperature_json_data)
-		toggle = 0
+	if sensor_id == 'Humidity':
+		print "Publishing fake Humidity Value: " + str(data) + "..."
+		publish_To_Topic (MQTT_Topic_Humidity, convert_to_json(sensor_id, data, name))
+	elif sensor_id == 'Temperature':
+		print "Publishing fake Temperature Value: " + str(data) + "..."
+		publish_To_Topic (MQTT_Topic_Temperature, convert_to_json(sensor_id, data, name))
 
 
-publish_Fake_Sensor_Values_to_MQTT()
+	# Temperature_Fake_Value = float("{0:.2f}".format(random.uniform(1, 30)))
+
+	# Temperature_Data = {}
+	# Temperature_Data['Sensor_ID'] = "Dummy-2"
+	# Temperature_Data['Date'] = (datetime.today()).strftime("%d-%b-%Y %H:%M:%S:%f")
+	# Temperature_Data['Temperature'] = Temperature_Fake_Value
+	# temperature_json_data = json.dumps(Temperature_Data)
+
+	# print "Publishing fake Temperature Value: " + str(Temperature_Fake_Value) + "..."
+	# publish_To_Topic (MQTT_Topic_Temperature, temperature_json_data)
+
+
+bok()
 
 #====================================================
