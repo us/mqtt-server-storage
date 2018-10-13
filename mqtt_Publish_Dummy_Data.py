@@ -13,7 +13,7 @@ from datetime import datetime
 
 #====================================================
 # MQTT Settings 
-MQTT_Broker = "iot.eclipse.org"
+MQTT_Broker = "0.0.0.0"
 MQTT_Port = 1883
 Keep_Alive_Interval = 45
 MQTT_Topic_Humidity = "Home/BedRoom/DHT22/Humidity"
