@@ -11,6 +11,7 @@ from store_Sensor_Data_to_DB import sensor_Data_Handler
 
 # MQTT Settings 
 MQTT_Broker = "0.0.0.0"
+#MQTT_Broker = "35.204.243.54"
 MQTT_Port = 1883
 Keep_Alive_Interval = 45
 MQTT_Topic = "Home/BedRoom/#"
