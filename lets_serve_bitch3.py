@@ -20,13 +20,15 @@ app.config["JSON_SORT_KEYS"] = False
 
 @app.route('/')
 def hello():
-	return """ <div align="center">
+	return render_template('hello.html')
+	'''
+		return """ <div align="cenpter">
 		<H1>Hello Motherfuckers<H1>
 			<a>What do you want ? </a><br>
 		<a href="/temperature">Temperature</a>
 		<a href="/humidity">Humidity</a></div>
 	"""
-
+	'''
 @app.route('/humidity')
 def humi():
 	#return jsonify(hello='world')
