@@ -1,3 +1,3 @@
 # Mqtt Server Storage
 
-Saves mqtt data to the database.
+Save mqtt data to the database. And serve on website.
