@@ -1,6 +1,3 @@
-# Store_MQTT_Data_in_Database
+# Mqtt Server Storage
 
-For detailed instruction please refer to the following link  - 
-
-https://iotbytes.wordpress.com/store-mqtt-data-from-sensors-into-sql-database/
-
+Saves mqtt data to the database.
