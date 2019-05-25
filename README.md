@@ -13,9 +13,9 @@ You should also do the same settings here.
 
 `store_Sensor_Data_to_DB.py` is save the data to DB.
 
-`lets_serve.py` serves the data with Simpsons.
+`lets_serve.py` serves the data with Simpsons as a json.
 
-Screen Shots
+## Screen Shots
 
 ![main_screen](https://github.com/us/mqtt-server-storage/blob/master/main_screen.png)
 ![json_screen](https://github.com/us/mqtt-server-storage/blob/master/json.png)
