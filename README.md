@@ -17,8 +17,8 @@ You should also do the same settings here.
 
 Screen Shots
 
-![main_screen](https://github.com/us/mqtt-server-storage/edit/master/main.png)
-![json_screen](https://github.com/us/mqtt-server-storage/edit/master/json.png)
+![main_screen](https://github.com/us/mqtt-server-storage/blob/master/main_screen.png)
+![json_screen](https://github.com/us/mqtt-server-storage/blob/master/json.png)
 
 
 
